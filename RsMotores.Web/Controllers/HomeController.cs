@@ -18,10 +18,31 @@ namespace RsMotores.Web.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        /*public IActionResult Index()
         {
             return View();
-        }
+        }*/
+
+        [HttpPost]
+        public IActionResult Index(string email, string password)
+        {
+            email = "isaac@gmail.com";
+            password = "123";
+            if (string.IsNullOrWhiteSpace(email) && string.IsNullOrWhiteSpace(password))
+            {
+                return View("Error");
+            }
+            else if (email == "isaac@gmail.com" && password == "123")
+            {
+                return View();
+            }
+            else
+            {
+                return View();
+            }
+            
+                
+        }   
 
         public IActionResult Privacy()
         {

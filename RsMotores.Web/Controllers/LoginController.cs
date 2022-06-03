@@ -10,7 +10,7 @@ namespace RsMotores.Web.Controllers
     {
         public IActionResult Token()
         {
-            ViewBag.Sistema = "RSMotoress";
+            ViewBag.Sistema = "RSMotores";
             return View();
         }
     }
