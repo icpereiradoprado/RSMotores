@@ -46,7 +46,7 @@ namespace RsMotores.Web
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Login}/{action=Token}/{id?}");
             });
         }
     }

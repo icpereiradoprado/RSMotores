@@ -7,12 +7,13 @@
 <head>
     <link rel="stylesheet" href="~/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Página de Login</title>
 </head>
 <body>
     <div class="container" id="container">
         <div class="form-container log-in-container">
-            <form action="#">
+            <form asp-controller="Home" asp-action="Index" method="post">
                 <h1>Login</h1>
                 <div class="social-container">
                     <a href="#" class="social"><i class="fa fa-google fa-2x"></i></a>
@@ -21,10 +22,10 @@
                     <a href="#" class="social"><i class="fab fa fa-github fa-2x"></i></a>
                 </div>
                 <span>ou digite seu usuário e senha</span>
-                <input id="email" type="email" placeholder="Email" required />
-                <input id="password" type="password" placeholder="Password" required />
+                <input id="email" type="email" name="email" placeholder="Email" required />
+                <input id="password" type="password" name="password" placeholder="Password" required />
                 <a href="#">Esqueceu sua senha?</a>
-                <button>Logar</button>
+                <input type="submit" value="Logar" />
             </form>
         </div>
         <div class="overlay-container">
@@ -33,10 +34,26 @@
                     <h1>@ViewBag.Sistema</h1>
 
                 </div>
-                <img style="opacity:0.5; width:110%;" src="~/wwwroot/img/bg.png" />
+                <img style="opacity:0.5; width:110%;" @*src="~/wwwroot/img/bg.png"*@ />
             </div>
         </div>
     </div>
 
 </body>
+<script>
+
+    let condition = new Boolean("@ViewBag.Condition");
+    if (condition == true) {
+        Swal.fire({
+            icon: '@ViewBag.Icon',
+            title: '@ViewBag.Title',
+            text: '@ViewBag.Msg',
+            footer: '<a href="">Why do I have this issue?</a>'
+        })
+    }
+    else {
+        console.log("Login efetuado com sucesso");
+    }
+</script>
+
 </html>

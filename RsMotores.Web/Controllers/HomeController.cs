@@ -26,20 +26,32 @@ namespace RsMotores.Web.Controllers
         [HttpPost]
         public IActionResult Index(string email, string password)
         {
-            email = "isaac@gmail.com";
-            password = "123";
+            ViewBag.Title = "Mensagem de login";
             if (string.IsNullOrWhiteSpace(email) && string.IsNullOrWhiteSpace(password))
             {
-                return View("Error");
-            }
-            else if (email == "isaac@gmail.com" && password == "123")
-            {
-                return View();
+                ViewBag.Msg = "Os campos E-mail e senha estão vazios! ";
+                ViewBag.Color = "red";
+                ViewBag.Icon = "error";
             }
             else
             {
-                return View();
+                if (email.Equals("isaac@gmail.com") && password.Equals("123"))
+                {
+                    ViewBag.Msg = "Login Válido";
+                    ViewBag.Color = "green";
+                    ViewBag.Icon = "success";
+                }
+                else
+                {
+                    ViewBag.Condition = true;
+                    ViewBag.Msg = "Login Inválido";
+                    ViewBag.Color = "red";
+                    ViewBag.Icon = "error";
+                    return View("~/Views/Login/Token.cshtml");
+                }
             }
+            return View();
+            
             
                 
         }   
