@@ -1,9 +1,19 @@
-﻿@{
+﻿@model RsMotores.Web.Models.Usuario
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
     <h1 class="display-4" style="color:@ViewBag.Color;">@ViewBag.Msg</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <p>Bem-vindo @Model.Nickname</p>
 </div>
+<script>
+    Swal.fire({
+            icon: '@ViewBag.Icon',
+            title: '@ViewBag.Title',
+            text: '@ViewBag.Msg',
+            footer: '<a href="">Why do I have this issue?</a>'
+        })
+</script>
 

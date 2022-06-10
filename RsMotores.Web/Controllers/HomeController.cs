@@ -26,28 +26,40 @@ namespace RsMotores.Web.Controllers
         [HttpPost]
         public IActionResult Index(string email, string password)
         {
-            ViewBag.Title = "Mensagem de login";
-            if (string.IsNullOrWhiteSpace(email) && string.IsNullOrWhiteSpace(password))
+            ErrorMessage dataError;
+            var userDados = new Usuario()
             {
-                ViewBag.Msg = "Os campos E-mail e senha estão vazios! ";
+                Cpf="44455566677",
+                Email = "admin@gmail.com",
+                Nickname = "admin",
+                Password ="123456",
+            };
+            ViewBag.Title = "Mensagem de login";
+            if (string.IsNullOrWhiteSpace(userDados.Email) && string.IsNullOrWhiteSpace(userDados.Password))
+            {
+                dataError = new ErrorMessage(3);
+                ViewBag.Msg = dataError.Msg;
                 ViewBag.Color = "red";
                 ViewBag.Icon = "error";
+                return View("Error", dataError);
             }
             else
             {
-                if (email.Equals("isaac@gmail.com") && password.Equals("123"))
+                if (email.Equals(userDados.Email) && password.Equals(userDados.Password))
                 {
                     ViewBag.Msg = "Login Válido";
                     ViewBag.Color = "green";
                     ViewBag.Icon = "success";
+                    return View(userDados);
                 }
                 else
                 {
+                    dataError = new ErrorMessage(1);
                     ViewBag.Condition = true;
-                    ViewBag.Msg = "Login Inválido";
+                    ViewBag.Msg = dataError.Msg ;
                     ViewBag.Color = "red";
                     ViewBag.Icon = "error";
-                    return View("~/Views/Login/Token.cshtml");
+                    return View("Error", dataError);
                 }
             }
             return View();
@@ -61,10 +73,10 @@ namespace RsMotores.Web.Controllers
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        /*[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+        }*/
     }
 }
