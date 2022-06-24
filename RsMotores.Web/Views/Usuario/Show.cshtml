@@ -1,0 +1,23 @@
+﻿@model Usuario
+
+@{
+    ViewBag.Title = "Visualizar";
+    Layout = "_Layout";
+}
+
+<h2>ViewBag.Title</h2>
+
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Nome</th>
+        <th>CPF</th>
+    </tr>
+    <tr>
+        
+        <td>@Model.Id</td>
+        <td>@Model.Nickname</td>
+        <td>@Model.Cpf</td>
+
+    </tr>
+</table>
