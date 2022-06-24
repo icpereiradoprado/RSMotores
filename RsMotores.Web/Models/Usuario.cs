@@ -12,7 +12,7 @@ namespace RsMotores.Web.Models
         public string Cpf { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-        /*public List<Usuario> users = new List<Usuario>();*/
+        //public List<Usuario> users = new List<Usuario>();
         public Usuario()
         {
 

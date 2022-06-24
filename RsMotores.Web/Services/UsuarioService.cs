@@ -6,28 +6,37 @@ using System.Threading.Tasks;
 
 namespace RsMotores.Web.Services
 {
-    public class UsuarioService
+    public class UsuarioService<Usuario> 
     {
-        private Usuario _usuario = new() { };
-
-        public UsuarioService(Usuario objUser)
+        public static ICollection<Usuario> _usuarios { get; set; }
+        
+        public UsuarioService()
         {
-            _usuario = objUser;
+            _usuarios = new List<Usuario>();
         }
-        public bool CpfValidate()
-        {
-            if(_usuario != null || string.IsNullOrEmpty(_usuario.Cpf))
-            {
-                string cpfAux = _usuario.Cpf.Replace("-", "");
-                cpfAux = _usuario.Cpf.Replace(".", "");
-                cpfAux = _usuario.Cpf.Replace(" ", "");
-                return cpfAux.Length == 11;
-            }
-            else
-            {
-                return false;
-            }
 
+        //public bool CpfValidate()
+        //{
+        //    if(_usuario != null || string.IsNullOrEmpty(_usuario.Cpf))
+        //    {
+        //        string cpfAux = _usuario.Cpf.Replace("-", "");
+        //        cpfAux = _usuario.Cpf.Replace(".", "");
+        //        cpfAux = _usuario.Cpf.Replace(" ", "");
+        //        return cpfAux.Length == 11;
+        //    }
+        //    else
+        //    {
+        //        return false;
+        //    }
+        //
+        //
+        //}
+        //
+        
+        public ICollection<Usuario> GetListUsuarios()
+        {
+            return _usuarios;
         }
+
     }
 }

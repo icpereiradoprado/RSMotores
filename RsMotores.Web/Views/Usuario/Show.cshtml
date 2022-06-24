@@ -1,11 +1,15 @@
-﻿@model Usuario
+﻿@*@model ICollection<Usuario>*@
+@model Usuario;
 
 @{
     ViewBag.Title = "Visualizar";
     Layout = "_Layout";
+    List<Usuario> storageUsers = new List<Usuario>();
+    storageUsers.Add(new Usuario(Model.Id, Model.Nickname, Model.Cpf, Model.Email, Model.Password));
+    
 }
 
-<h2>ViewBag.Title</h2>
+<h2>@ViewBag.Title</h2>
 
 <table>
     <tr>
@@ -14,10 +18,12 @@
         <th>CPF</th>
     </tr>
     <tr>
-        
-        <td>@Model.Id</td>
-        <td>@Model.Nickname</td>
-        <td>@Model.Cpf</td>
-
+        @foreach(var item in storageUsers)
+        {
+            <td>@item.Id</td>
+            <td>@item.Nickname</td>
+            <td>@item.Cpf</td>
+        }
     </tr>
 </table>
+

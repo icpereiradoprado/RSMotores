@@ -5,15 +5,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using RsMotores.Web.Models;
+using RsMotores.Web.Services;
+
 namespace RsMotores.Web.Controllers
 {
     public class UsuarioController : Controller
     {
-        /*public List<Usuario> users = new List<Usuario>();
-        public void AddUsers(Usuario user)
-        {
-            users.Add(new Usuario(user.Id, user.Nickname, user.Cpf, user.Email, user.Password));
-        }*/
         // GET: UsuarioController
         /*public ActionResult Index()
         {
@@ -27,14 +24,18 @@ namespace RsMotores.Web.Controllers
         }*/
 
         // GET: UsuarioController/Show/objUser
-        public ActionResult Show()
+        public ActionResult Show(Usuario user)
         {
-            return View();
+
+            //serviceUsers.GetListUsuarios().Add(user);
+            /*return View(UsuarioService<Usuario>._usuarios);*/
+            return View(user);  
         }
 
         // GET: UsuarioController/Create
         public ActionResult Create()
         {
+            //UsuarioService<Usuario>._usuarios = new List<Usuario>();
             return View();
         }
 
@@ -43,7 +44,7 @@ namespace RsMotores.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection objForm)
         {
-            Usuario user = new
+            Usuario user = new Usuario
                 (
                     1,
                     objForm["nickName"].ToString(),
@@ -51,11 +52,12 @@ namespace RsMotores.Web.Controllers
                     objForm["email"].ToString(),
                     objForm["password"].ToString()
                 );
-            //user.AddUsers(user);
+
+            //UsuarioService<Usuario>._usuarios.Add(user);
             try
             {
                 //return RedirectToAction(nameof(Index));
-                return RedirectToAction("Show",user);
+                return View("Show",user);
             }
             catch
             {
