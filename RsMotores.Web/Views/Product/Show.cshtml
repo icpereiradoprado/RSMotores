@@ -1,0 +1,26 @@
+﻿@model Product;
+
+@{
+    ViewBag.Title = "Visualizar Produtos";
+    Layout = "_Layout";
+
+}
+
+<h2>@ViewBag.Title</h2>
+
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Nome</th>
+        <th>Preço</th>
+        <th>Quantidade</th>
+    </tr>
+    <tr>
+        <td>@Model.Id</td>
+        <td>@Model.NameProduct</td>
+        <td>@String.Format("{0:C2}",Model.Price)</td>
+        <td>@Model.Quantity</td>
+    </tr>
+</table>
+
+

@@ -12,6 +12,10 @@ namespace RsMotores.Web.Models
         public double Price { get; set; }
         public int Quantity { get; set; }
 
+        public Product()
+        {
+
+        }
         public Product(int id, string nameProduct, double price, int quantity)
         {
             Id = id;

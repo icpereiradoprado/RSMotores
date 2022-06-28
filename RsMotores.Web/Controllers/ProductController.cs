@@ -4,22 +4,29 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using RsMotores.Web.Models;
 
 namespace RsMotores.Web.Controllers
 {
     public class ProductController : Controller
     {
         // GET: ProductController
-        public ActionResult Index()
+        /*public ActionResult Index()
         {
             return View();
-        }
+        }*/
 
         // GET: ProductController/Details/5
-        public ActionResult Details(int id)
+        /*public ActionResult Details(int id)
         {
             return View();
+        }*/
+
+        public ActionResult Show(Product product)
+        {
+            return View(product);
         }
+            
 
         // GET: ProductController/Create
         public ActionResult Create()
@@ -30,11 +37,22 @@ namespace RsMotores.Web.Controllers
         // POST: ProductController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(IFormCollection objForm)
         {
+            string price = objForm["price"].ToString().Replace(".",",");
+
+            double priceConverted = double.Parse(price);
+            
+            Product product = new Product
+                (
+                    1,
+                    objForm["nameProduct"].ToString(),
+                    priceConverted,
+                    int.Parse(objForm["quantity"])
+                ) ;
             try
             {
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("show", product);
             }
             catch
             {
