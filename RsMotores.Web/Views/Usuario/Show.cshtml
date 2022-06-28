@@ -1,12 +1,9 @@
 ﻿@*@model ICollection<Usuario>*@
-@model Usuario;
+@model ICollection<RsMotores.Web.Models.Usuario>
 
 @{
     ViewBag.Title = "Visualizar";
     Layout = "_Layout";
-    List<Usuario> storageUsers = new List<Usuario>();
-    storageUsers.Add(new Usuario(Model.Id, Model.Nickname, Model.Cpf, Model.Email, Model.Password));
-    
 }
 
 <h2>@ViewBag.Title</h2>
@@ -17,13 +14,15 @@
         <th>Nome</th>
         <th>CPF</th>
     </tr>
-    <tr>
-        @foreach(var item in storageUsers)
-        {
+
+    @foreach (var item in Model)
+    {
+        <tr>
             <td>@item.Id</td>
             <td>@item.Nickname</td>
             <td>@item.Cpf</td>
-        }
-    </tr>
+        </tr>
+    }
+
 </table>
 

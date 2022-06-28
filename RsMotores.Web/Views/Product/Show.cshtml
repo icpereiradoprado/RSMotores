@@ -1,4 +1,5 @@
-﻿@model Product;
+﻿@*@model Product;*@
+@model ICollection<RsMotores.Web.Models.Product>
 
 @{
     ViewBag.Title = "Visualizar Produtos";
@@ -15,12 +16,14 @@
         <th>Preço</th>
         <th>Quantidade</th>
     </tr>
-    <tr>
-        <td>@Model.Id</td>
-        <td>@Model.NameProduct</td>
-        <td>@String.Format("{0:C2}",Model.Price)</td>
-        <td>@Model.Quantity</td>
-    </tr>
+    @foreach(var item in Model){
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.NameProduct</td>
+            <td>@String.Format("{0:C2}", item.Price)</td>
+            <td>@item.Quantity</td>
+        </tr>
+    }
 </table>
 
 

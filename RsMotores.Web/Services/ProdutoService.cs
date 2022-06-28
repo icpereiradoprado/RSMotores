@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace RsMotores.Web.Services
 {
-    public class UsuarioService
+    public class ProdutoService
     {
-        private Usuario _usuario = new Usuario();
+        private Product _produto = new Product();
 
-        public static ICollection<Usuario> ListUsers = new List<Usuario>();
+        public static ICollection<Product> ListProducts = new List<Product>();
         
-        public UsuarioService(Usuario usuario)
+        public ProdutoService(Product produto)
         {
-            _usuario = usuario;
+            _produto = produto;
         }
 
         //public bool CpfValidate()

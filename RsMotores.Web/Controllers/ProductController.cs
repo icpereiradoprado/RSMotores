@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using RsMotores.Web.Models;
+using RsMotores.Web.Services;
 
 namespace RsMotores.Web.Controllers
 {
@@ -22,16 +23,16 @@ namespace RsMotores.Web.Controllers
             return View();
         }*/
 
-        public ActionResult Show(Product product)
+        public ActionResult Show()
         {
-            return View(product);
+            return View(ProdutoService.ListProducts);
         }
             
 
         // GET: ProductController/Create
-        public ActionResult Create()
+        public ActionResult Create(string msg)
         {
-            return View();
+            return View(msg);
         }
 
         // POST: ProductController/Create
@@ -43,16 +44,18 @@ namespace RsMotores.Web.Controllers
 
             double priceConverted = double.Parse(price);
             
-            Product product = new Product
+            
+            try
+            {
+                var product = new Product
                 (
                     1,
                     objForm["nameProduct"].ToString(),
                     priceConverted,
                     int.Parse(objForm["quantity"])
-                ) ;
-            try
-            {
-                return RedirectToAction("show", product);
+                );
+                ProdutoService.ListProducts.Add(product);
+                return View("Create", "Produto cadastrado com sucesso");
             }
             catch
             {
@@ -61,10 +64,10 @@ namespace RsMotores.Web.Controllers
         }
 
         // GET: ProductController/Edit/5
-        public ActionResult Edit(int id)
+        /*public ActionResult Edit(int id)
         {
             return View();
-        }
+        }*/
 
         // POST: ProductController/Edit/5
         [HttpPost]

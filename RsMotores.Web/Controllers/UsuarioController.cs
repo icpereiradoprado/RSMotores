@@ -24,12 +24,12 @@ namespace RsMotores.Web.Controllers
         }*/
 
         // GET: UsuarioController/Show/objUser
-        public ActionResult Show(Usuario user)
+        public ActionResult Show()
         {
 
             //serviceUsers.GetListUsuarios().Add(user);
             /*return View(UsuarioService<Usuario>._usuarios);*/
-            return View(user);  
+            return View(UsuarioService.ListUsers);  
         }
 
         // GET: UsuarioController/Create
@@ -43,8 +43,10 @@ namespace RsMotores.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection objForm)
-        {
-            Usuario user = new Usuario
+        { 
+            try
+            {
+                var user = new Usuario
                 (
                     1,
                     objForm["nickName"].ToString(),
@@ -52,12 +54,8 @@ namespace RsMotores.Web.Controllers
                     objForm["email"].ToString(),
                     objForm["password"].ToString()
                 );
-
-            //UsuarioService<Usuario>._usuarios.Add(user);
-            try
-            {
-                //return RedirectToAction(nameof(Index));
-                return View("Show",user);
+                UsuarioService.ListUsers.Add(user);
+                return View("Create","Usuário cadastrado com Sucesso");
             }
             catch
             {
